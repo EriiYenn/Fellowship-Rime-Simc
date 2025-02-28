@@ -50,6 +50,12 @@ class Spell:
         self.max_target_count = (
             max_target_count  # Maximum Needed Targets to cast this on.
         )
+    
+    @property
+    def simfell_name(self) -> str:
+        """Returns the name of the spell in the simfell file."""
+            
+        return self.name.lower().replace(" ", "_")
 
     def effective_cast_time(self, character: "Character") -> float:
         """Returns the effective cast time of the spell."""

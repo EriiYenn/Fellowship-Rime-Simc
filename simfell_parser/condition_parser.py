@@ -4,7 +4,7 @@ from typing import Any, Optional
 import operator
 import re
 
-from base import Character
+from base import Character, Spell
 from simfell_parser.models import Condition
 
 
@@ -111,16 +111,34 @@ class SimFileConditionParser:
     ) -> Optional[Any]:
         """Map a condition to a character attribute."""
 
-        # Check if the condition is related to character attributes
-        if condition.left.startswith("character."):
-            attribute_name = condition.left.split(".", 1)[1]
-            character_value = getattr(character, attribute_name, None)
+        attribute_name = condition.left.split(".", 1)[1]
+        character_value = getattr(character, attribute_name, None)
 
-            if character_value is not None:
-                op_func = SimFileConditionParser.possible_operators.get(
-                    condition.operator
-                )
-                if op_func:
-                    return op_func(character_value, condition.right)
+        if character_value is not None:
+            op_func = SimFileConditionParser.possible_operators.get(
+                condition.operator
+            )
+            if op_func:
+                return op_func(character_value, condition.right)
+
+        return None
+    
+    @staticmethod
+    def map_to_spell_attribute(condition: Condition, spell: Spell) -> Optional[Any]:
+        """Map a condition to a spell attribute."""
+
+        spell_name = condition.left.split(".", 1)[1]
+        if spell_name.split(".")[0] != spell.simfell_name:
+            return None
+        
+        attribute_name = spell_name.split(".", 1)[1]
+        spell_value = getattr(spell, attribute_name, None)
+
+        if spell_value is not None:
+            op_func = SimFileConditionParser.possible_operators.get(
+                condition.operator
+            )
+            if op_func:
+                return op_func(spell_value, condition.right)
 
         return None
