@@ -28,24 +28,18 @@ print("Summary of actions and results:")
 for action in configuration.actions:
     print(f"Action: '{action.name}', Conditions: {len(action.conditions)}")
     for condition in action.conditions:
-        result_character = None
-        result_spell = None
-        
+        result = None  # pylint: disable=invalid-name
+
         if condition.left.startswith("character."):
-            result_character = SimFileConditionParser.map_to_character_attribute(
+            result = SimFileConditionParser.map_to_character_attribute(
                 condition, character
             )
         elif condition.left.startswith("spell."):
-            result_spell = SimFileConditionParser.map_to_spell_attribute(
+            result = SimFileConditionParser.map_to_spell_attribute(
                 condition, test_spell
             )
-        
-        if result_character is not None:
+
+        if result is not None:
             print(f"\tCondition: {condition}")
-            print(f"\tResult: {result_character}")
-            print("\t--------------------")
-        
-        if result_spell is not None:
-            print(f"\tCondition: {condition}")
-            print(f"\tResult: {result_spell}")
+            print(f"\tResult: {result}")
             print("\t--------------------")

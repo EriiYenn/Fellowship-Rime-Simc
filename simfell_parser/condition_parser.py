@@ -119,19 +119,24 @@ class SimFileConditionParser:
                 condition.operator
             )
             if op_func:
-                print(f"\t--> Checking if {attribute_name}({character_value}) "+f"{condition.operator} {condition.right}")
+                print(
+                    f"\t--> Checking if {attribute_name}({character_value}) "
+                    + f"{condition.operator} {condition.right}"
+                )
                 return op_func(character_value, condition.right)
 
         return None
-    
+
     @staticmethod
-    def map_to_spell_attribute(condition: Condition, spell: Spell) -> Optional[Any]:
+    def map_to_spell_attribute(
+        condition: Condition, spell: Spell
+    ) -> Optional[Any]:
         """Map a condition to a spell attribute."""
 
         spell_name = condition.left.split(".", 1)[1]
         if spell_name.split(".")[0] != spell.simfell_name:
             return None
-        
+
         attribute_name = spell_name.split(".", 1)[1]
         spell_value = getattr(spell, attribute_name, None)
 
@@ -140,7 +145,10 @@ class SimFileConditionParser:
                 condition.operator
             )
             if op_func:
-                print(f"\t--> Checking if {spell_name}({spell_value}) "+f"{condition.operator} {condition.right}")
+                print(
+                    f"\t--> Checking if {spell_name}({spell_value}) "
+                    + f"{condition.operator} {condition.right}"
+                )
                 return op_func(spell_value, condition.right)
 
         return None
