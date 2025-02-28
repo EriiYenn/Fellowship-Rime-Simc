@@ -50,6 +50,11 @@ class Character:
         self.glacial_assault_buff = RimeBuff.GLACIAL_ASSAULT_BUFF.value
         self.comet_bonus = RimeBuff.COMET_BONUS.value
 
+        # ------------
+        # Test Values
+        # ------------
+        self.anima = 0
+
     def add_spell_to_rotation(self, spell: RimeSpell) -> None:
         """Adds a spell to the character's rotation."""
 
