@@ -119,6 +119,7 @@ class SimFileConditionParser:
                 condition.operator
             )
             if op_func:
+                print(f"\t--> Checking if {attribute_name}({character_value}) "+f"{condition.operator} {condition.right}")
                 return op_func(character_value, condition.right)
 
         return None
@@ -139,6 +140,7 @@ class SimFileConditionParser:
                 condition.operator
             )
             if op_func:
+                print(f"\t--> Checking if {spell_name}({spell_value}) "+f"{condition.operator} {condition.right}")
                 return op_func(spell_value, condition.right)
 
         return None
