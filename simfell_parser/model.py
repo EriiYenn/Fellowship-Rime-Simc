@@ -1,8 +1,9 @@
 """Models for the SimFell file."""
 
-from typing import Any, List
-
+from typing import Any, List, Optional
 from pydantic import BaseModel
+
+from simfell_parser.enums import Gem, TierSet, Tier
 
 
 class Condition(BaseModel):
@@ -23,6 +24,37 @@ class Action(BaseModel):
         return f"{self.name} ({', '.join(self.conditions)})"
 
 
+class GemTier(BaseModel):
+    """Class for a gem tier in a SimFell configuration."""
+
+    tier: Tier
+    gem: Gem
+
+
+class Equipment(BaseModel):
+    """Class for an equipment in a SimFell configuration."""
+
+    name: str
+    ilvl: int
+    tier: Tier
+    tier_set: Optional[TierSet]
+    intellect: int
+    stamina: int
+    expertise: Optional[int]
+    crit: Optional[int]
+    haste: Optional[int]
+    spirit: Optional[int]
+    gem_bonus: Optional[int]
+    gem: Optional[GemTier]
+
+
+class Gear(BaseModel):
+    """Class for a gear in a SimFell configuration."""
+
+    helmet: Equipment
+    shoulder: Equipment
+
+
 class SimFellConfiguration(BaseModel):
     """Class for a SimFell configuration."""
 
@@ -40,6 +72,7 @@ class SimFellConfiguration(BaseModel):
     enemies: int
 
     actions: List[Action]
+    gear: Gear
 
     @property
     def parsed_json(self) -> str:

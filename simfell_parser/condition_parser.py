@@ -5,7 +5,7 @@ import operator
 import re
 
 from base import Character, Spell
-from simfell_parser.models import Condition
+from simfell_parser.model import Condition
 
 
 class SimFileConditionParser:
