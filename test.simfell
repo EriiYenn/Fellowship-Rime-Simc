@@ -1,11 +1,20 @@
 # Character Information
 name="Rime - ST/General Talents"
 hero=Rime
-intellect=300
-crit=90
-expertise=160
-haste=120
-spirit=50
+
+# Test Attributes
+# intellect=300
+# crit=90
+# expertise=160
+# haste=120
+# spirit=50
+
+intellect=331
+crit=120
+expertise=109
+haste=146
+spirit=107
+
 talents=2-12-3 # Stands for Talents 1.2, 2.1, 2.2, 3.3
 
 # Gear
@@ -19,6 +28,7 @@ trinket2=drums
 # Sim Information
 duration=120
 enemies=1
+run_count=2000
 
 # Actions
 action=/wrath_of_winter

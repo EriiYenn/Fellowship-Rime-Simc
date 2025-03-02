@@ -2,8 +2,8 @@
 
 from copy import deepcopy
 
-from base import Character
-from characters.Rime.spell import RimeSpell
+
+from characters.Rime import RimeSpellEnum, RimeCharacter
 from simfell_parser.condition_parser import SimFileConditionParser
 from simfell_parser.simfile_parser import SimFileParser
 
@@ -12,7 +12,7 @@ parser = SimFileParser("test.simfell")
 configuration = parser.parse()
 # print(configuration.parsed_json)
 
-character = Character(
+character = RimeCharacter(
     intellect=configuration.intellect,
     crit=configuration.crit,
     expertise=configuration.expertise,
@@ -20,7 +20,7 @@ character = Character(
     spirit=configuration.spirit,
 )
 
-test_spell = deepcopy(RimeSpell.COLD_SNAP.value)
+test_spell = deepcopy(RimeSpellEnum.COLD_SNAP.value)
 
 print(f"Character Anima: {character.anima}\n")
 

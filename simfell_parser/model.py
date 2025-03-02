@@ -51,8 +51,8 @@ class Equipment(BaseModel):
 class Gear(BaseModel):
     """Class for a gear in a SimFell configuration."""
 
-    helmet: Equipment
-    shoulder: Equipment
+    helmet: Optional[Equipment]
+    shoulder: Optional[Equipment]
 
 
 class SimFellConfiguration(BaseModel):
@@ -66,10 +66,12 @@ class SimFellConfiguration(BaseModel):
     haste: int
     spirit: int
     talents: str
-    trinket1: str
-    trinket2: str
+    trinket1: Optional[str]
+    trinket2: Optional[str]
+
     duration: int
     enemies: int
+    run_count: int
 
     actions: List[Action]
     gear: Gear

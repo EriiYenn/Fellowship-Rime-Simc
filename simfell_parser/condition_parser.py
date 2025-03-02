@@ -4,7 +4,7 @@ from typing import Any, Optional
 import operator
 import re
 
-from base import Character, Spell
+from base import BaseSpell, BaseCharacter
 from simfell_parser.model import Condition
 
 
@@ -107,7 +107,7 @@ class SimFileConditionParser:
 
     @staticmethod
     def map_to_character_attribute(
-        condition: Condition, character: Character
+        condition: Condition, character: BaseCharacter
     ) -> Optional[Any]:
         """Map a condition to a character attribute."""
 
@@ -129,7 +129,7 @@ class SimFileConditionParser:
 
     @staticmethod
     def map_to_spell_attribute(
-        condition: Condition, spell: Spell
+        condition: Condition, spell: BaseSpell
     ) -> Optional[Any]:
         """Map a condition to a spell attribute."""
 

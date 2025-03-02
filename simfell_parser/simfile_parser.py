@@ -80,9 +80,6 @@ class SimFileParser:
         into an Equipment object.
         """
 
-        # helmet=Test Helm Name,int=14,stam=17,exp=23,crit=4,gem_bonus=33,gem=emerald_t1,ilvl=150,tier=6
-        # shoulder=Test Shoulder Name,int=12,stam=15,crit=13,haste=6,set=Wyrmling Vigor,ilvl=150,tier=6
-
         pattern = (
             r"(?P<name>[^,]+),int=(?P<int>\d+),stam=(?P<stam>\d+)"
             + r"(?:,exp=(?P<exp>\d+))?(?:,crit=(?P<crit>\d+))"
@@ -111,8 +108,6 @@ class SimFileParser:
             ilvl = int(match.group("ilvl"))
             tier = int(match.group("tier"))
             tier_set = match.group("set")
-
-            print(tier_set)
 
             return Equipment(
                 name=name,
@@ -151,7 +146,6 @@ class SimFileParser:
             return key, self._parse_list_like_line(value)
         # Handle values for gear
         if key.startswith("gear_"):
-            print(key)
             return key, self._parse_gear_line(value)
 
         return key, value
